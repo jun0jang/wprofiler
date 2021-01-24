@@ -1,0 +1,9 @@
+[flake8]
+max-line-length = 80
+statistics = True
+show-source = True
+ignore=E203,E226,E266,E231,E402,E501,E722,E731,W503,W504,W605,W606,I100,I902,I201,I202,F901,B005
+exclude =
+    .git,
+    .venv,
+    __pycache__,
