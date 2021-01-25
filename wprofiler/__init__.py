@@ -1,5 +1,7 @@
 from typing import Any, Callable, Dict, Iterable, List, Tuple
 
+from wprofiler.profiler_factory import ProfilerFactory
+
 Environ = Dict[str, Any]
 Headers = List[Tuple[str, str]]
 StartResponse = Callable[[str, Headers], None]
@@ -11,7 +13,7 @@ class WSGIProfiler:
     def __init__(
         self,
         wsgi: WSGIApplication,
-        profiler_factory,
+        profiler_factory: ProfilerFactory,
         file_factory,
         file_storage,
         profile_permission,
