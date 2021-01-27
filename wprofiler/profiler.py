@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 class Profiler(ABC):
@@ -10,4 +11,8 @@ class Profiler(ABC):
 
     @abstractmethod
     def stop(self):
+        pass
+
+    @abstractmethod
+    def get_original(self) -> Any:
         pass

@@ -26,3 +26,15 @@ def test_should_call_disable(mocked_disable):
 
     # then
     assert mocked_disable.called
+
+
+def test_get_original():
+    # given
+    excepted = Profile()
+    profiler = CProfiler(excepted)
+
+    # when
+    original = profiler.get_original()
+
+    # then =
+    assert original is excepted

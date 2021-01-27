@@ -27,3 +27,15 @@ def test_should_call_stop(mocked_stop):
 
     # then
     assert mocked_stop.called
+
+
+def test_get_original():
+    # given
+    excepted = Profiler()
+    profiler = PyinstrumentProfiler(excepted)
+
+    # when
+    original = profiler.get_original()
+
+    # then
+    assert original is excepted

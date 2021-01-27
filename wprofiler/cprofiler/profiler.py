@@ -12,3 +12,6 @@ class CProfiler(Profiler):
 
     def stop(self) -> None:
         self.profile.disable()
+
+    def get_original(self) -> cProfile.Profile:
+        return self.profile

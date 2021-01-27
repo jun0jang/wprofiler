@@ -12,3 +12,6 @@ class PyinstrumentProfiler(Profiler):
 
     def stop(self):
         self.profiler.stop()
+
+    def get_original(self) -> pyinstrument.Profiler:
+        return self.profiler
