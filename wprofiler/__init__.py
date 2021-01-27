@@ -1,5 +1,6 @@
 from typing import Any, Callable, Dict, Iterable, List, Tuple
 
+from wprofiler.file_factory import FileFactory
 from wprofiler.profiler_factory import ProfilerFactory
 
 Environ = Dict[str, Any]
@@ -14,7 +15,7 @@ class WSGIProfiler:
         self,
         wsgi: WSGIApplication,
         profiler_factory: ProfilerFactory,
-        file_factory,
+        file_factory: FileFactory,
         file_storage,
         profile_permission,
     ):
