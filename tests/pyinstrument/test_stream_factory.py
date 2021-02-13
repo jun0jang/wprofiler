@@ -2,10 +2,8 @@ from unittest.mock import patch
 
 from pyinstrument.profiler import Profiler as PyProfiler
 
-from wprofiler.pyinstrument.file_factory import (
-    PyinstrumentOutputTextFileFactory,
-)
 from wprofiler.pyinstrument.profiler_factory import PyinstrumentProfilerFactory
+from wprofiler.pyinstrument.stream_factory import PyOutputTextStreamFactory
 
 
 def test_output_text_should_be_file():
@@ -16,10 +14,10 @@ def test_output_text_should_be_file():
     excepted_contents = profiler.get_original().output_text()
 
     # when
-    file = PyinstrumentOutputTextFileFactory().create(profiler)
+    stream = PyOutputTextStreamFactory().create(profiler)
 
     # then
-    assert file.read().decode("utf-8") == excepted_contents
+    assert stream.read().decode("utf-8") == excepted_contents
 
 
 def test_should_send_output_text_argument():
@@ -29,11 +27,11 @@ def test_should_send_output_text_argument():
     excepted_called = dict(
         unicode=True, color=True, show_all=True, timeline=True
     )
-    file_factory = PyinstrumentOutputTextFileFactory(**excepted_called)
+    stream_factory = PyOutputTextStreamFactory(**excepted_called)
 
     # when
     with patch.object(PyProfiler, "output_text", return_value="") as mocked:
-        file_factory.create(profiler)
+        stream_factory.create(profiler)
 
     # then
     mocked.assert_called_once_with(**excepted_called)

@@ -2,11 +2,11 @@ import io
 import pstats
 from typing import Iterable, Union
 
-from wprofiler import FileFactory
+from wprofiler import StreamFactory
 from wprofiler.profiler import Profiler
 
 
-class PstatsFileFactory(FileFactory):
+class PstatsStreamFactory(StreamFactory):
     def __init__(
         self,
         sort_keys: Iterable[str] = (),

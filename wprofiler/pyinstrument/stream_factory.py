@@ -2,11 +2,11 @@ import io
 
 from pyinstrument.profiler import Profiler as PyProfiler
 
-from wprofiler import FileFactory
+from wprofiler import StreamFactory
 from wprofiler.profiler import Profiler
 
 
-class PyinstrumentOutputTextFileFactory(FileFactory):
+class PyOutputTextStreamFactory(StreamFactory):
     def __init__(
         self,
         unicode: bool = False,
@@ -28,5 +28,5 @@ class PyinstrumentOutputTextFileFactory(FileFactory):
             timeline=self.timeline,
         )
 
-        file = io.BytesIO(text.encode("utf-8"))
-        return file
+        stream = io.BytesIO(text.encode("utf-8"))
+        return stream
