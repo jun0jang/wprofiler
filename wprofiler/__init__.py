@@ -1,3 +1,4 @@
+from wprofiler.path_factory import PathFactory
 from wprofiler.profiler_factory import ProfilerFactory
 from wprofiler.stream_factory import StreamFactory
 from wprofiler.wsgi_types import (
@@ -12,16 +13,18 @@ class WSGIProfiler:
     def __init__(
         self,
         wsgi: WSGIApplication,
+        profile_permission,
         profiler_factory: ProfilerFactory,
         stream_factory: StreamFactory,
+        path_factory: PathFactory,
         file_storage,
-        profile_permission,
     ):
         self.wsgi = wsgi
-        self.profiler_factory = profiler_factory
-        self.stream_factory = stream_factory
-        self.file_storage = file_storage
         self.profile_permission = profile_permission
+        self.profiler_factory = profiler_factory
+        self.path_factory = path_factory
+        self.file_storage = file_storage
+        self.stream_factory = stream_factory
 
     def __call__(
         self, environ: Environ, start_response: StartResponse
@@ -37,4 +40,5 @@ class WSGIProfiler:
         finally:
             profiler.stop()
             stream = self.stream_factory.create(profiler)
-            self.file_storage.save(stream)
+            path = self.path_factory.create(environ)
+            self.file_storage.save(stream, path)
