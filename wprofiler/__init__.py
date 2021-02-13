@@ -1,13 +1,11 @@
-from typing import Any, Callable, Dict, Iterable, List, Tuple
-
 from wprofiler.profiler_factory import ProfilerFactory
 from wprofiler.stream_factory import StreamFactory
-
-Environ = Dict[str, Any]
-Headers = List[Tuple[str, str]]
-StartResponse = Callable[[str, Headers], None]
-Response = Iterable[bytes]
-WSGIApplication = Callable[[Environ, StartResponse], Response]
+from wprofiler.wsgi_types import (
+    Environ,
+    Response,
+    StartResponse,
+    WSGIApplication,
+)
 
 
 class WSGIProfiler:
